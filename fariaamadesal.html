@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assad Amade SAL — Solidez em cada sector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#08080a;
+    --charcoal:#141417;
+    --charcoal-2:#1c1c20;
+    --gold-1:#cfa54c;
+    --gold-2:#f2dd9e;
+    --gold-deep:#8c6a1f;
+    --cream:#f4efe2;
+    --muted:#948d7a;
+    --line: rgba(207,165,76,0.22);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-1); color:var(--black);}
+
+  h1,h2,h3, .display{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    color:var(--gold-1);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .gold-text{
+    background:linear-gradient(115deg, var(--gold-deep) 0%, var(--gold-2) 35%, var(--gold-1) 55%, var(--gold-2) 75%, var(--gold-deep) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 6vw; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 6vw;
+    transition:background .4s ease, padding .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.nav.scrolled{
+    background:rgba(8,8,10,0.86);
+    backdrop-filter:blur(10px);
+    padding:14px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.14em;
+  }
+  .nav-mark span{ color:var(--gold-1); }
+  nav.links{ display:flex; gap:38px; }
+  nav.links a{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:0.82rem;
+    color:var(--muted);
+    position:relative;
+    padding-bottom:4px;
+    transition:color .3s ease;
+  }
+  nav.links a::after{
+    content:'';
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--gold-1);
+    transition:width .3s ease;
+  }
+  nav.links a:hover{ color:var(--gold-2); }
+  nav.links a:hover::after{ width:100%; }
+  .nav-toggle{ display:none; background:none; border:none; color:var(--gold-1); font-size:1.6rem; cursor:pointer; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:120px 6vw 100px;
+    overflow:hidden;
+  }
+  .hero-shard{
+    position:absolute; top:-10%; right:-18%;
+    width:75vw; height:150%;
+    background:linear-gradient(135deg, #b8862c 0%, #e9c65e 45%, #f6e6ab 60%, #b8862c 100%);
+    clip-path:polygon(38% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity:0.94;
+    z-index:0;
+  }
+  .hero-shard::after{
+    content:'';
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 40px);
+  }
+  .hero-seam{
+    position:absolute; top:-10%; right:-18%;
+    width:75vw; height:150%;
+    clip-path:polygon(38% 0%, 39.4% 0%, 1.4% 100%, 0% 100%);
+    background:var(--black);
+    z-index:1;
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:640px; }
+  .hero-mono{
+    display:flex; align-items:baseline; gap:2px;
+    font-family:'Cinzel', serif; font-weight:700;
+    font-size:clamp(3.2rem, 9vw, 5.4rem);
+    line-height:0.9;
+    margin-bottom:28px;
+  }
+  .hero-mono .a{ transform:translateY(2px); }
+  .hero-mono .star{ font-size:0.32em; color:var(--gold-2); margin:0 2px; align-self:flex-start; }
+  .hero-name{
+    font-size:clamp(1.9rem, 4.6vw, 2.9rem);
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero-tagline{
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    color:var(--cream);
+    max-width:30ch;
+    margin-bottom:18px;
+  }
+  .hero-slogan{
+    margin-top:8px;
+  }
+  .hero-industries{
+    margin-top:46px;
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:0.85rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .hero-industries span{ color:var(--gold-1); }
+  .scroll-cue{
+    position:absolute; bottom:38px; left:6vw; z-index:2;
+    display:flex; align-items:center; gap:12px;
+    font-family:'Barlow Condensed', sans-serif; letter-spacing:0.2em; text-transform:uppercase;
+    font-size:0.75rem; color:var(--muted);
+  }
+  .scroll-line{ width:36px; height:1px; background:var(--gold-1); position:relative; overflow:hidden; }
+  .scroll-line::after{
+    content:''; position:absolute; left:-100%; top:0; width:100%; height:100%;
+    background:var(--gold-2);
+    animation:slide 2.2s ease-in-out infinite;
+  }
+  @keyframes slide{ 0%{left:-100%;} 50%{left:0;} 100%{left:100%;} }
+
+  /* ---------- ZIGZAG SEAM DIVIDER ---------- */
+  .seam{
+    width:100%; height:26px; display:block;
+  }
+  .seam-black-on-gold{ background:linear-gradient(180deg, var(--black), var(--black)); }
+  .seam svg{ width:100%; height:100%; display:block; }
+
+  /* ---------- SLOGAN STRIP ---------- */
+  .slogan-strip{
+    background:var(--black);
+    padding:28px 6vw;
+    text-align:center;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .slogan-strip p{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:clamp(0.78rem, 1.6vw, 1rem);
+    color:var(--gold-1);
+  }
+
+  /* ---------- SECTORS ---------- */
+  .sectors{
+    padding:120px 6vw 100px;
+    background:var(--black);
+  }
+  .section-head{ max-width:640px; margin-bottom:70px; }
+  .section-head .eyebrow{ margin-bottom:16px; display:block; }
+  .section-head h2{ font-size:clamp(1.9rem, 4vw, 2.6rem); line-height:1.2; }
+  .section-head h2 em{ font-style:normal; color:var(--gold-1); }
+
+  .sector-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .sector-card{
+    background:var(--charcoal);
+    padding:38px 26px 34px;
+    display:flex; flex-direction:column;
+    min-height:420px;
+    transition:background .35s ease, transform .35s ease;
+    position:relative;
+  }
+  .sector-card:hover{ background:var(--charcoal-2); transform:translateY(-4px); }
+  .sector-glyph{
+    font-family:'Cinzel', serif;
+    font-size:2.1rem;
+    color:var(--gold-1);
+    margin-bottom:22px;
+  }
+  .sector-card h3{
+    font-size:1.28rem;
+    margin-bottom:14px;
+    color:var(--cream);
+  }
+  .sector-official{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+    line-height:1.5;
+    border-left:2px solid var(--gold-deep);
+    padding-left:12px;
+    margin-bottom:26px;
+  }
+  .sector-features{ list-style:none; margin-top:auto; display:flex; flex-direction:column; gap:10px; }
+  .sector-features li{
+    font-size:0.92rem;
+    color:var(--cream);
+    padding-left:18px;
+    position:relative;
+    font-weight:300;
+  }
+  .sector-features li::before{
+    content:'—';
+    position:absolute; left:0; top:0;
+    color:var(--gold-1);
+  }
+
+  /* ---------- ABOUT / CARD SHOWCASE ---------- */
+  .about{
+    padding:110px 6vw;
+    background:var(--charcoal);
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:70px;
+    align-items:center;
+  }
+  .about-text .eyebrow{ margin-bottom:18px; display:block; }
+  .about-text h2{ font-size:clamp(1.7rem, 3.6vw, 2.3rem); margin-bottom:24px; line-height:1.25; }
+  .about-text p{ color:var(--muted); font-size:1rem; max-width:46ch; margin-bottom:18px; }
+  .about-text p strong{ color:var(--cream); font-weight:500; }
+
+  .card-stage{
+    position:relative;
+    height:400px;
+  }
+  .biz-card{
+    position:absolute;
+    width:300px; height:172px;
+    border-radius:14px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.55);
+  }
+  .biz-card.front{
+    background:linear-gradient(145deg, #101012, #000);
+    left:0; top:20px;
+    padding:22px 24px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    border:1px solid rgba(207,165,76,0.3);
+    transform:rotate(-9deg);
+    z-index:2;
+  }
+  .biz-card.back{
+    background:linear-gradient(150deg, #efce6c, #c99a2f 45%, #f6e6ab 70%, #b8862c);
+    right:0; bottom:0;
+    padding:22px 24px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    transform:rotate(7deg);
+    z-index:1;
+  }
+  .biz-card .bc-mono{
+    font-family:'Cinzel', serif; font-weight:700; font-size:1.7rem;
+  }
+  .biz-card.front .bc-mono{ color:var(--gold-1); }
+  .biz-card.back .bc-mono{ color:#1a1408; }
+  .biz-card.front .bc-name{ font-family:'Cinzel', serif; font-size:0.72rem; letter-spacing:0.14em; color:var(--gold-2); }
+  .biz-card.front .bc-sub{ font-family:'Barlow Condensed', sans-serif; font-size:0.62rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-top:4px; }
+  .biz-card.back .bc-name{ font-family:'Cinzel', serif; font-size:0.72rem; letter-spacing:0.14em; color:#1a1408; margin-top:8px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    padding:120px 6vw 100px;
+    background:var(--black);
+    text-align:center;
+  }
+  .contact .eyebrow{ display:block; margin-bottom:18px; }
+  .contact h2{ font-size:clamp(1.9rem, 4.2vw, 2.8rem); margin-bottom:20px; }
+  .contact p.lead{ color:var(--muted); max-width:44ch; margin:0 auto 56px; }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    max-width:900px;
+    margin:0 auto;
+  }
+  .contact-item{
+    background:var(--charcoal);
+    padding:36px 22px;
+    transition:background .3s ease;
+  }
+  .contact-item:hover{ background:var(--charcoal-2); }
+  .contact-item .eyebrow{ margin-bottom:14px; }
+  .contact-item a, .contact-item span{
+    font-family:'Cinzel', serif;
+    font-size:1.02rem;
+    color:var(--cream);
+    display:block;
+    word-break:break-word;
+  }
+  .contact-item a:hover{ color:var(--gold-1); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 6vw 40px;
+    background:var(--black);
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  footer .foot-slogan{
+    font-family:'Cinzel', serif;
+    font-size:clamp(1.1rem, 2.6vw, 1.5rem);
+    margin-bottom:18px;
+  }
+  footer .foot-mark{ font-family:'Barlow Condensed', sans-serif; letter-spacing:0.2em; text-transform:uppercase; font-size:0.85rem; color:var(--muted); margin-bottom:8px; }
+  footer .foot-legal{ font-family:'Jost', sans-serif; font-size:0.78rem; color:#5c5748; margin-top:22px; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .scroll-line::after{ animation:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .sector-grid{ grid-template-columns:repeat(2, 1fr); }
+    .about{ grid-template-columns:1fr; gap:60px; }
+    .card-stage{ height:340px; }
+    .contact-grid{ grid-template-columns:1fr; max-width:420px; }
+  }
+  @media (max-width: 700px){
+    nav.links{
+      position:fixed; top:64px; right:0; left:0;
+      background:rgba(8,8,10,0.98);
+      flex-direction:column; gap:0;
+      padding:10px 6vw 26px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%);
+      transition:transform .4s ease;
+    }
+    nav.links.open{ transform:translateY(0); }
+    nav.links a{ padding:14px 0; border-bottom:1px solid var(--line); }
+    .nav-toggle{ display:block; }
+    .hero{ padding:110px 6vw 90px; }
+    .hero-shard{ width:100vw; right:-8%; opacity:0.5; }
+    .hero-seam{ width:100vw; right:-8%; }
+    .sector-grid{ grid-template-columns:1fr; }
+    .sector-card{ min-height:unset; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-mark">A<span>·</span>S <span style="color:var(--muted); font-size:0.62em; letter-spacing:0.1em; margin-left:8px;">ASSAD AMADE SAL</span></div>
+  <nav class="links" id="navLinks">
+    <a href="#inicio">Início</a>
+    <a href="#sectores">Sectores</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-shard"></div>
+  <div class="hero-seam"></div>
+  <div class="hero-inner">
+    <p class="eyebrow" style="margin-bottom:22px;">Grupo Assad Amade SAL</p>
+    <div class="hero-mono"><span class="a gold-text">A</span><span class="star">✦</span><span class="gold-text">S</span></div>
+    <h1 class="hero-name">Assad Amade <span class="gold-text">SAL</span></h1>
+    <p class="hero-tagline">Da terra ao lar, do capital à estrada.</p>
+    <p class="eyebrow hero-slogan">Solidez em cada sector</p>
+    <div class="hero-industries">
+      <div><span>01</span> Mineração</div>
+      <div><span>02</span> Investimentos</div>
+      <div><span>03</span> Imobiliário</div>
+      <div><span>04</span> Automóvel</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div> Percorrer</div>
+</section>
+
+<div class="seam seam-black-on-gold">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none"><polyline points="0,26 100,0 200,26 300,0 400,26 500,0 600,26 700,0 800,26 900,0 1000,26 1100,0 1200,26" fill="none" stroke="#cfa54c" stroke-width="1.4" opacity="0.55"/></svg>
+</div>
+
+<div class="slogan-strip">
+  <p>Solidez em cada sector — desde 2020</p>
+</div>
+
+<section class="sectors" id="sectores">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Áreas de actuação</span>
+      <h2>Quatro sectores, <em>um só</em> padrão de exigência.</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="sector-grid">
+
+      <article class="sector-card reveal">
+        <div class="sector-glyph">Mn</div>
+        <h3>Mineração</h3>
+        <p class="sector-official">Serviços na área de mineração</p>
+        <ul class="sector-features">
+          <li>Prospecção e estudos de viabilidade</li>
+          <li>Gestão de licenciamento mineiro</li>
+          <li>Consultoria técnica e operacional</li>
+        </ul>
+      </article>
+
+      <article class="sector-card reveal">
+        <div class="sector-glyph">In</div>
+        <h3>Investimentos</h3>
+        <p class="sector-official">Prestação de serviços na atracção de investimentos</p>
+        <ul class="sector-features">
+          <li>Angariação de parceiros e capital</li>
+          <li>Estruturação de projectos</li>
+          <li>Acompanhamento institucional</li>
+        </ul>
+      </article>
+
+      <article class="sector-card reveal">
+        <div class="sector-glyph">Im</div>
+        <h3>Imobiliário</h3>
+        <p class="sector-official">Prestação de serviços no sector imobiliário</p>
+        <ul class="sector-features">
+          <li>Compra, venda e arrendamento</li>
+          <li>Gestão de património</li>
+          <li>Desenvolvimento de projectos</li>
+        </ul>
+      </article>
+
+      <article class="sector-card reveal">
+        <div class="sector-glyph">Au</div>
+        <h3>Automóvel</h3>
+        <p class="sector-official">Serviços e transporte automóvel</p>
+        <ul class="sector-features">
+          <li>Serviços de transporte</li>
+          <li>Manutenção e assistência automóvel</li>
+          <li>Frotas ao serviço de empresas</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="seam">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none"><polyline points="0,26 100,0 200,26 300,0 400,26 500,0 600,26 700,0 800,26 900,0 1000,26 1100,0 1200,26" fill="none" stroke="#cfa54c" stroke-width="1.4" opacity="0.55"/></svg>
+</div>
+
+<section class="about" id="sobre">
+  <div class="about-text reveal">
+    <span class="eyebrow">Quem somos</span>
+    <h2>Um grupo, <span class="gold-text">quatro sectores</span>, um só compromisso.</h2>
+    <p>A <strong>Assad Amade SAL</strong> nasceu para reunir, sob uma só marca, negócios que partilham a mesma exigência: rigor técnico, relações de confiança e resultados que se sustentam no tempo.</p>
+    <p>Da mineração à atracção de investimento, do imobiliário ao transporte automóvel — cada sector é tratado com a mesma atenção ao detalhe que assinala cada cartão, cada contrato e cada aperto de mão da casa.</p>
+    <p>É essa a promessa por detrás do símbolo dourado: <strong>solidez em cada sector.</strong></p>
+  </div>
+  <div class="card-stage reveal">
+    <div class="biz-card back">
+      <div class="bc-mono">A✦S</div>
+      <div class="bc-name">ASSAD AMADE SAL</div>
+    </div>
+    <div class="biz-card front">
+      <div class="bc-mono">A✦S</div>
+      <div>
+        <div class="bc-name">Assad Amade SAL</div>
+        <div class="bc-sub">Serviços automóveis · Imobiliário · Investimento · Mineração</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="seam">
+  <svg viewBox="0 0 1200 26" preserveAspectRatio="none"><polyline points="0,26 100,0 200,26 300,0 400,26 500,0 600,26 700,0 800,26 900,0 1000,26 1100,0 1200,26" fill="none" stroke="#cfa54c" stroke-width="1.4" opacity="0.55"/></svg>
+</div>
+
+<section class="contact" id="contacto">
+  <span class="eyebrow">Contacto</span>
+  <h2>Fale connosco.</h2>
+  <p class="lead reveal">Estamos disponíveis para qualquer um dos nossos quatro sectores de actuação.</p>
+  <div class="contact-grid reveal">
+    <div class="contact-item">
+      <span class="eyebrow">Telefone</span>
+      <a href="tel:+258878120000">+258 87 812 0000</a>
+    </div>
+    <div class="contact-item">
+      <span class="eyebrow">WhatsApp</span>
+      <a href="https://wa.me/258878120000" target="_blank" rel="noopener">+258 87 812 0000</a>
+    </div>
+    <div class="contact-item">
+      <span class="eyebrow">Email</span>
+      <a href="mailto:amadesal3@gmail.com">amadesal3@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="foot-mark">Assad Amade SAL</p>
+  <p class="foot-slogan gold-text">Solidez em cada sector</p>
+  <p class="foot-legal">© 2020–2026 Assad Amade SAL. Todos os direitos reservados. Moçambique.</p>
+</footer>
+
+<script>
+  const navEl = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
